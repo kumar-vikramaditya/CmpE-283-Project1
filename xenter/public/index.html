@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <title>Team 16</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="css/styleboot.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title" >Sign in to continue to Team 16- Private Cloud</h1>
+            <div class="account-wall">
+                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                <form id="loginForm" class="form-signin" action="">
+                <input id="user" type="text" class="form-control" placeholder="Username" required autofocus>
+                <input id="pwd" type="password" class="form-control" placeholder="Password" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="validate()">
+                    Sign in</button>
+                <label class="checkbox pull-left">
+                    <input type="checkbox" value="remember-me">
+                    Remember me
+                </label>
+                <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                <div id="unsuccessful"></div>
+                </form>
+            </div>
+            <a href="reg.html" class="text-center new-account">Create an account </a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+var count = 2;
+function validate() {
+var un = document.getElementById("user").value;
+var pw = document.getElementById("pwd").value;
+var valid = false;
+
+var unArray = ["Tania", "Neha", "Nishat", "Nirali", "Vikram"];  // as many as you like - no comma after final entry
+var pwArray = ["Password1", "Password2", "Password3", "Password4", "Password5"];  // the corresponding passwords;
+
+    for (var i=0; i <unArray.length; i++) {
+        if ((un == unArray[i]) && (pw == pwArray[i])) {
+            valid = true;
+            break;
+        }
+    }
+
+if (valid) {
+console.log("Login successful");
+document.getElementById("loginForm").action="dashboard.html"
+//window.open("dashboard.html", "_blank");
+} else {
+    document.getElementById("unsuccessful").innerHTML="The Username or the Password is incorrect.";
+    return false;
+    //alert("Login Unsuccessful");
+}
+
+// var t = " tries";
+// if (count == 1) {t = " try"}
+
+// if (count >= 1) {
+// alert ("Invalid username and/or password.  You have " + count + t + " left.");
+// document.myform.username.value = "";
+// document.myform.pword.value = "";
+// setTimeout("document.myform.username.focus()", 25);
+// setTimeout("document.myform.username.select()", 25);
+// count --;
+// }
+
+// else {
+// alert ("Still incorrect! You have no more tries left!");
+// document.myform.username.value = "No more tries allowed!";
+// document.myform.pword.value = "";
+// document.myform.username.disabled = true;
+// document.myform.pword.disabled = true;
+// return false;
+// }
+
+}
+
+
+
+</script>
+		
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+    <title>Registration page</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="css/styleboot.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <style type="text/css">
+
+		.form-signin
+		{
+		    max-width: 700px;
+		    padding: 15px;
+		    margin: 0 auto;
+		}
+
+		.account-wall
+		{
+			width: 500px;
+		    margin-top: 20px;
+		    padding: 40px 0px 20px 0px;
+		    background-color: #f7f7f7;
+		    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+		}
+
+    </style>
+    
+    <script type="text/javascript">
+	
+ //----------------------------Confirm password-----------------------------
+	function confirmPassword(){
+		var password=document.getElementById("pw").value;
+		var cPassword=document.getElementById("cpw").value;
+		
+		if(password!=cPassword){
+			alert("Your passwords do not match");
+		}
+		else
+		{
+			document.getElementById("birth").focus();
+		}
+	}
+	
+    </script>
+    
+</head>
+
+<body >
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+            	<h3><center>Register to continue to Team 16- Private Cloud</center></h3>
+            	<div class="account-wall">
+					<div class="form-signin" method="post" id="registration" name="register">
+			
+						<p><label>First Name:</label> <input class="form-control" id="user" name="firstname" type="text" required autofocus></p>
+						<p><label>Last Name:</label> <input class="form-control" id="last" name="lastname" type="text" ></p>
+						<p><label>Email:</label> <input class="form-control" name="email" id="mail" type="text" ></p>
+			
+						<p><label>Password:</label> <input class="form-control" type="password" id="pw" name="password" required> 
+			
+			
+						<p><label>Confirm Password:</label> <input class="form-control" id="cpw" type="password" name="repassword" placeholder="Same as password." 			onblur="confirmPassword()"></p>
+						<p><label>D.O.B :</label> <input class="form-control" type="date" id="birth" name="dob" value="" placeholder="m-d-yyyy"></p>
+
+						<p><label>Phone:</label> <input class="form-control" id="phone" name="phone" placeholder="###-###-####" pattern="\d{3}-?\d{3}-?\d{4}"></p>
+			
+						<p><label>Credit card No:</label> <input class="form-control" id="credit" name="creaditcard" pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$"></p>
+
+						<button class="btn btn-med btn-primary btn-block" onclick="handleButtonPress()"id="login">Sign up</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+ <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+
+//------------------------------------------Ajax call code------------------------------------
+
+	//document.getElementById("login").onclick = handleButtonPress;
+	var httpRequest;
+
+	function handleButtonPress() {
+		console.log("Hello");
+		//e.preventDefault();
+		var form = document.getElementById("registration");
+		var formData = new Object();
+		var inputElements = document.getElementsByClassName("form-control");
+
+		for (var i = 0; i < inputElements.length; i++) {
+			formData[inputElements[i].name] = inputElements[i].value;
+			console.log("new item");
+		}
+
+		
+// 		httpRequest = new XMLHttpRequest();
+// 		httpRequest.onreadystatechange = handleResponse;
+// 		httpRequest.open("POST", form.action);
+
+// 		httpRequest.setRequestHeader("Content-Type", "application/json");
+// 		httpRequest.send(JSON.stringify(formData));
+
+		$.post("/profile/signup", formData).done(function(data) {
+			
+			alert(data);
+
+			if (data.status == "success") {
+				alert("Successful");
+				window.location="/dashboard"
+				//setTimeout(function(){callitagain()}, 700);
+				// $("#btnInvitation").toggleClass('btn-warning');
+			}
+		});
+
+	}
+
+	function handleResponse() {
+		if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+			//document.getElementById("results").innerHTML= "Saved successfully!";
+		}
+	}
+
+	</script>  
+
+</body>
+</html>

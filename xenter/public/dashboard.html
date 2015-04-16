@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Team 16 Dashboard</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    
+    <style type="text/css">
+        .ui-accordion .ui-accordion-header {
+            display: block;
+            cursor: pointer;
+            position: relative;
+            margin: 2px 0 0 0;
+            padding: .5em .5em .5em .7em;
+            min-height: 0; /* support: IE7 */
+            font-size: 100%;
+        }
+        .ui-accordion .ui-accordion-li-fix {
+          display: inline;
+        }
+        .ui-accordion .ui-accordion-header-active {
+          border-bottom: 2 !important;
+        }
+        .ui-accordion .ui-accordion-header a {
+          display: block;
+          font-size: 2em;
+          padding: .5em .5em .5em .7em;
+        }
+        /* IE7-/Win - Fix extra vertical space in lists */
+        .ui-accordion a {
+          zoom: 1;
+        }
+        .ui-accordion-icons .ui-accordion-header a {
+          padding-left: 2.2em;
+        }
+        .ui-accordion .ui-accordion-header .ui-icon {
+          position: absolute;
+          left: .5em;
+          top: 50%;
+          margin-top: -8px;
+        }
+        .ui-accordion .ui-accordion-content {
+          padding: 1em 2.2em;
+          border-top: 0;
+          margin-top: -2px;
+          position: relative;
+          top: 1px;
+          margin-bottom: 2px;
+          overflow: auto;
+          display: none;
+          zoom: 1;
+        }
+        .ui-accordion .ui-accordion-content-active {
+          display: block;
+        }
+
+        h3{
+
+            /*background-image: -webkit-linear-gradient(top left, #FFFFFF 0%, #00A3EF 100%);
+*/            height: 30px;
+            background: #E6E6E6;
+
+        }
+ 
+
+        #head1{
+            color: #428bca;
+            background: #EEEE8D;
+      
+        }
+
+        body{
+            background: url("bgimage.jpg");
+            background-size: cover;
+        }
+
+#accordion{
+    font-size: 75%;
+}
+
+    </style>
+
+	</head>
+
+	<body >
+<!-- header -->
+<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Welcome to the Dashboard </a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<!-- /Header -->
+
+<!-- Main -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Left column -->
+        <div class="col-sm-3">
+            <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+            <hr>
+                    <ul class="nav nav-stacked collapse in" id="userMenu">
+                        <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#basicModal"><i class="glyphicon glyphicon-paperclip"></i> Create VM </a>
+                        </li>
+                        <li><a href="#" data-toggle="modal" data-target="#basicModal2"><i class="glyphicon glyphicon-cog"></i> Profile</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                    </ul>
+
+            <hr>
+        </div>
+        <!-- /Left column -->
+
+<!-- create modal -->
+
+<div class="modal fade" id="basicModal" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" align="center">Select your Template:</h4>
+      </div>
+      <div class="modal-body">
+
+                <div class="row">
+                        <div id="2" class="col-md-4"></div>
+                        <div id="2" class="col-md-4">
+
+                           <div class="btn-group-vertical">
+
+                              <button type="button" class="btn btn-lg btn-success">Linux - 512MB</button>
+                              <br>
+                              <button type="button" class="btn btn-lg btn-success">Ubuntu - 1GB</button>
+                              <br>
+                              <button type="button" class="btn btn-lg btn-success">Windows - 1GB</button>
+                              
+                            </div>
+                        </div>
+                        <div id="2" class="col-md-4"></div>
+                </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-cog"></i> Deploy VM</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Profile Modal -->
+
+<div class="modal fade" id="basicModal2" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" align="center">My usage profile:</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <p id="name">Name: </p>
+                    <p id="mail">Email: </p>   
+                    <p id="no"> No.of VMs: </p>  
+            </div>
+        </div>
+        <div class="row">
+
+            <div id="memory" class="col-md-4"></div>
+            <div id="cpu" class="col-md-6"></div>
+        </div>
+        
+      </div>
+      <br>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="glyphicon glyphicon-thumbs-up"></i> Got it</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+        <!-- Right 2 -->
+        <div class="col-sm-9">
+            <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="container">
+                     <h3 id="head1">
+                      <div id="rowHead" class="row">
+                        <div id="2" class="col-md-1"></div>
+                        <div id="2" class="col-md-2"><h5>VM Id</h5></div>
+                        <div id="3" class="col-md-3"><h5>Operating System</h5></div>
+                        <div id="4" class="col-md-2"><h5>Memory</h5></div>
+                        <div id="5" class="col-md-2"><h5>Hard Disc</h5></div>
+                        <div id="6" class="col-md-2"><h5>Status</h5></div>
+                    </div>
+                </h3>
+      
+    <!--  Add new rows for each vm -->
+    <div id="accordion">
+        <h3>
+                <div id="row1" class="row">
+                        
+                        <div id="1" class="col-md-1"><b class="glyphicon glyphicon-hdd"></b></div>
+                        <div id="2" class="col-md-2"></div>
+                        <div id="3" class="col-md-3"></div>
+                        <div id="4" class="col-md-2"></div>
+                        <div id="5" class="col-md-2"></div>
+                        <div id="6" class="col-md-2"></div>
+                    
+                </div>
+        </h3>
+        <div>
+            <button class="btn btn-sm btn-primary " type="submit" id="login">Connect</button>
+            <button class="btn btn-sm btn-warning " type="submit" id="login">Stop</button>
+            <button class="btn btn-sm btn-danger " type="submit" id="login">Terminate</button>
+        </div>
+                 <h3> 
+                    <div id="row2" class="row">
+
+                        <div id="1" class="col-md-1"><b class="glyphicon glyphicon-hdd"></b></div>
+                        <div id="2" class="col-md-2"></div>
+                        <div id="3" class="col-md-3"></div>
+                        <div id="4" class="col-md-2"></div>
+                        <div id="5" class="col-md-2"></div>
+                        <div id="6" class="col-md-2"></div>
+                    </div>
+                </h3>
+                <div>
+            <button class="btn btn-sm btn-primary " type="submit" id="login">Connect</button>
+            <button class="btn btn-sm btn-warning " type="submit" id="login">Stop</button>
+            <button class="btn btn-sm btn-danger " type="submit" id="login">Terminate</button>
+        </div>
+
+
+                <h3>
+
+                    <div id="row3" class="row">
+
+                        <div id="1" class="col-md-1" ><b class="glyphicon glyphicon-hdd"></b></div>
+                        <div id="2" class="col-md-2"></div>
+                        <div id="3" class="col-md-3"></div>
+                        <div id="4" class="col-md-2"></div>
+                        <div id="5" class="col-md-2"></div>
+                        <div id="6" class="col-md-2"></div>
+                    </div>
+                </h3>
+                <div>
+            <button class="btn btn-sm btn-primary " type="submit" id="login">Connect</button>
+            <button class="btn btn-sm btn-warning " type="submit" id="login">Stop</button>
+            <button class="btn btn-sm btn-danger " type="submit" id="login">Terminate</button>
+        </div>
+        </div> <!-- End of accordion -->
+
+            </div>
+            </div>
+
+
+        </div> <!-- End of Row -->
+
+    </div>  <!--End of col-span-9-->
+
+
+<!-- New column...................... -->
+    <div class="col-sm-9">
+
+          <a href="#"><strong><i class="glyphicon glyphicon-tasks"></i> Performance</strong></a>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container">
+                        <div class="row">
+                            <div id="chart_div" class="col-md-6"></div>
+                            <div id="chart_div2" class="col-md-6"></div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<!-- /Main -->
+
+
+    <!-- script references -->
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="dash.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+    <script src="dash.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ <script type="text/javascript">
+
+      $(function() {
+        $( "#accordion" ).accordion({
+          collapsible: true,
+          heightStyle: "content",
+          activate: function(event, ui){
+            alert((ui));
+          }
+        });
+      });
+
+
+
+
+ </script>
+    
+	</body>
+</html>

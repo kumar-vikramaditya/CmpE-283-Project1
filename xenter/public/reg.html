@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+    <title>Registration page</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="css/styleboot.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <style type="text/css">
+
+		.form-signin
+		{
+		    max-width: 700px;
+		    padding: 15px;
+		    margin: 0 auto;
+		}
+
+		.account-wall
+		{
+			width: 500px;
+		    margin-top: 20px;
+		    padding: 40px 0px 20px 0px;
+		    background-color: #f7f7f7;
+		    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+		}
+
+    </style>
+    
+    <script type="text/javascript">
+	
+ //----------------------------Confirm password-----------------------------
+	function confirmPassword(){
+		var password=document.getElementById("pw").value;
+		var cPassword=document.getElementById("cpw").value;
+		
+		if(password!=cPassword){
+			alert("Your passwords do not match");
+		}
+		else
+		{
+			document.getElementById("birth").focus();
+		}
+	}
+	
+    </script>
+    
+</head>
+
+<body >
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+            	<h3><center>Register to continue to Team 16- Private Cloud</center></h3>
+            	<div class="account-wall">
+					<form class="form-signin" id="registration" method="post" action="/savedata" name="register">
+			
+						<p><label>First Name:</label> <input class="form-control" id="user" name="First_Name" type="text" required autofocus></p>
+						<p><label>Last Name:</label> <input class="form-control" id="last" name="Last_Name" type="text" ></p>
+						<p><label>Email:</label> <input class="form-control" name="Email" id="mail" type="text" ></p>
+			
+						<p><label>Password:</label> <input class="form-control" type="password" id="pw" name="Password" required> 
+			
+			
+						<p><label>Confirm Password:</label> <input class="form-control" id="cpw" type="password" name="RePassword" placeholder="Same as password." 			onblur="confirmPassword()"></p>
+						<p><label>D.O.B :</label> <input class="form-control" type="date" id="birth" name="Dob" value="" placeholder="m-d-yyyy"></p>
+
+						<p><label>Phone:</label> <input class="form-control" id="phone" name="Phone" placeholder="###-###-####" pattern="\d{3}-?\d{3}-?\d{4}"></p>
+			
+						<p><label>Credit card No:</label> <input class="form-control" id="credit" name="Creditcard" pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$"></p>
+
+						<button class="btn btn-med btn-primary btn-block" type="submit" id="login">Sign up</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <script type="text/javascript">
+
+//------------------------------------------Ajax call code------------------------------------
+
+	document.getElementById("login").onclick = handleButtonPress;
+	var httpRequest;
+
+	function handleButtonPress(e) {
+		e.preventDefault();
+		var form = document.getElementById("registration");
+		var formData = new Object();
+		var inputElements = document.getElementsByClassName("a");
+
+		for (var i = 0; i < inputElements.length; i++) {
+			formData[inputElements[i].name] = inputElements[i].value;
+			console.log("new item");
+		}
+
+		httpRequest = new XMLHttpRequest();
+		httpRequest.onreadystatechange = handleResponse;
+		httpRequest.open("POST", form.action);
+
+		httpRequest.setRequestHeader("Content-Type", "application/json");
+		httpRequest.send(JSON.stringify(formData));
+	}
+
+	function handleResponse() {
+		if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+			document.getElementById("results").innerHTML= "Saved successfully!";
+		}
+	}
+
+	</script>  
+
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Team 16 Dashboard</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<style type="text/css">
+.ui-accordion .ui-accordion-header {
+	display: block;
+	cursor: pointer;
+	position: relative;
+	margin: 2px 0 0 0;
+	padding: .5em .5em .5em .7em;
+	min-height: 0; /* support: IE7 */
+	font-size: 100%;
+}
+
+.ui-accordion .ui-accordion-li-fix {
+	display: inline;
+}
+
+.ui-accordion .ui-accordion-header-active {
+	border-bottom: 2 !important;
+}
+
+.ui-accordion .ui-accordion-header a {
+	display: block;
+	font-size: 2em;
+	padding: .5em .5em .5em .7em;
+}
+/* IE7-/Win - Fix extra vertical space in lists */
+.ui-accordion a {
+	zoom: 1;
+}
+
+.ui-accordion-icons .ui-accordion-header a {
+	padding-left: 2.2em;
+}
+
+.ui-accordion .ui-accordion-header .ui-icon {
+	position: absolute;
+	left: .5em;
+	top: 50%;
+	margin-top: -8px;
+}
+
+.ui-accordion .ui-accordion-content {
+	padding: 1em 2.2em;
+	border-top: 0;
+	margin-top: -2px;
+	position: relative;
+	top: 1px;
+	margin-bottom: 2px;
+	overflow: auto;
+	display: none;
+	zoom: 1;
+}
+
+.ui-accordion .ui-accordion-content-active {
+	display: block;
+}
+
+h3 {
+	/*background-image: -webkit-linear-gradient(top left, #FFFFFF 0%, #00A3EF 100%);
+*/
+	height: 30px;
+	background: #E6E6E6;
+}
+
+#head1 {
+	color: #428bca;
+	background: #EEEE8D;
+}
+
+body {
+	background: url("bgimage.jpg");
+	background-size: cover;
+}
+
+#accordion {
+	font-size: 75%;
+}
+</style>
+
+</head>
+
+<body>
+	<!-- header -->
+	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+		<div class="container-fluid">
+
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Welcome to the Dashboard </a>
+			</div>
+
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><i class="glyphicon glyphicon-lock"></i>
+							Logout</a></li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+	<!-- /Header -->
+
+	<!-- Main -->
+	<div class="container-fluid">
+		<div class="row">
+
+			<!-- Left column -->
+			<div class="col-sm-3">
+				<a href="#"><strong><i
+						class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+				<hr>
+				<ul class="nav nav-stacked collapse in" id="userMenu">
+					<li class="active"><a href="#"><i
+							class="glyphicon glyphicon-home"></i> Home</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#basicModal"><i
+							class="glyphicon glyphicon-paperclip"></i> Create VM </a></li>
+					<li><a href="#" data-toggle="modal" data-target="#basicModal2"><i
+							class="glyphicon glyphicon-cog"></i> Profile</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-off"></i>
+							Logout</a></li>
+				</ul>
+
+				<hr>
+			</div>
+			<!-- /Left column -->
+
+			<!-- create modal -->
+
+			<div class="modal fade" id="basicModal" role="dialog" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header bg-primary">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<h4 class="modal-title" align="center">Select your Template:</h4>
+						</div>
+						<div class="modal-body">
+
+							<div class="row">
+								<div id="2" class="col-md-4"></div>
+								<div id="2" class="col-md-4">
+
+									<div class="btn-group-vertical">
+
+										<button type="button" onclick="onTemplateSelect(1)"
+											class="btn btn-lg btn-success">Linux - 256MB</button>
+										<br>
+										<button type="button" onclick="onTemplateSelect(2)"
+											class="btn btn-lg btn-success">Ubuntu - 512MB</button>
+										<br>
+										<button type="button" onclick="onTemplateSelect(3)"
+											class="btn btn-lg btn-success">Windows - 1GB</button>
+
+									</div>
+								</div>
+								<div id="2" class="col-md-4"></div>
+							</div>
+
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+
+
+			<!-- Profile Modal -->
+
+			<div class="modal fade" id="basicModal2" role="dialog" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header bg-primary">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<h4 class="modal-title" align="center">My usage profile:</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<p id="name">Name:</p>
+									<p id="mail">Email:</p>
+									<p id="no">No.of VMs:</p>
+								</div>
+							</div>
+							<div class="row">
+
+								<div id="memory" class="col-md-4"></div>
+								<div id="cpu" class="col-md-6"></div>
+							</div>
+
+						</div>
+						<br>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal">
+								<i class="glyphicon glyphicon-thumbs-up"></i> Got it
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- Create Modal -->
+
+			<div class="modal fade" id="basicModal3" role="dialog" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header bg-primary">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<h4 class="modal-title" align="center">My usage profile:</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<h3>For Windows:</h3>
+								<div class="col-md-12">
+									<p id="win">
+										Open <em>mstsc</em>, provide the <em>IP address</em>, and
+										provide the Username (<em>administrator</em>) and Password (<em>12!@qwQW</em>),
+										and click <em>Connect</em>.
+									</p>
+
+								</div>
+							</div>
+							<div class="row">
+								<h3>For Linux:</h3>
+								<div class="col-md-12">
+									<p id="win">
+										Open <em>putty</em>, provide the <em>IP address</em>, and
+										provide the Username (<em>administrator</em>) and Password (<em>12!@qwQW</em>).
+									</p>
+
+								</div>
+							</div>
+
+						</div>
+						<br>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal">
+								<i class="glyphicon glyphicon-thumbs-up"></i> Got it
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+
+
+			<!-- Right 2 -->
+			<div class="col-sm-9">
+				<a href="#"><strong><i
+						class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
+				<div class="row">
+					<div class="col-md-12">
+						<div id="container">
+							<h3 id="head1">
+								<div id="rowHead" class="row">
+									<div id="1" class="col-md-1"></div>
+									<div id="2" class="col-md-1">
+										<h5>VM Id</h5>
+									</div>
+
+									<div id="3" class="col-md-2">
+										<h5>Operating System</h5>
+									</div>
+									<div id="4" class="col-md-2">
+										<h5>Memory</h5>
+									</div>
+									<div id="5" class="col-md-2">
+										<h5>VM Name</h5>
+									</div>
+									<div id="6" class="col-md-2">
+										<h5>IP</h5>
+									</div>
+									<div id="7" class="col-md-2">
+										<h5>Status</h5>
+									</div>
+								</div>
+							</h3>
+
+							<!--  Add new rows for each vm -->
+							<div id="accordion">
+								<% for(var i=0;i < vms.length; i++){ %>
+								<h3>
+									<div id="row<%=vms[i].id%>" class="row">
+
+										<div id="1" class="col-md-1">
+											<b class="glyphicon glyphicon-hdd"></b>
+										</div>
+										<div id="r<%=vms[i].id%>i2" class="col-md-1"><%=vms[i].id%></div>
+										<div id="r<%=vms[i].id%>i3" class="col-md-2"><%=vms[i].vmOS%></div>
+										<div id="r<%=vms[i].id%>i4" class="col-md-2"><%=vms[i].vmRAM%></div>
+										<div id="r<%=vms[i].id%>i5" class="col-md-2"><%=vms[i].vmName%></div>
+										<div id="r<%=vms[i].id%>i6" class="col-md-2"><%=vms[i].vmStatus%></div>
+										<div id="r<%=vms[i].id%>i7" class="col-md-2"><%=vms[i].vmStatus%></div>
+
+									</div>
+								</h3>
+								<div>
+									<button class="btn btn-sm btn-primary " data-toggle="modal"
+										data-target="#basicModal3" id="connect">Connect</button>
+									<button class="btn btn-sm btn-primary"
+										onclick="onvmStart(<%=vms[i].id%>)" id="login">Start</button>
+									<button class="btn btn-sm btn-warning"
+										onclick="onvmStop(<%=vms[i].id%>)" id="login">Stop</button>
+									<button class="btn btn-sm btn-danger "
+										onclick="onvmTerminate(<%=vms[i].id%>)" id="terminate">Terminate</button>
+								</div>
+								<% } %>
+							</div>
+							<!-- End of accordion -->
+
+						</div>
+					</div>
+					
+					
+
+						<div id="vmStatsChart" style="margin: 20 auto"></div>
+                        </div>
+
+				</div>
+				<script>
+				function updatestatus(id) {
+					//alert("calling updatestatus of vm id" + id);
+					$.post("/vm/getstate", {vmid:id}).done(function(data) {
+						//alert(data.status);
+						$("#r"+id+"i7").text(data.status);
+						//setTimeout(function(){updatestatus(id)}, 700);
+					});
+				}
+				function updateip(id) {
+					//alert("calling updatestatus of vm id" + id);
+					$.post("/vm/getip", {vmid:id}).done(function(data) {
+						//alert(data.status);
+						$("#r"+id+"i6").text(data.status);
+						//setTimeout(function(){updatestatus(id)}, 700);
+					});
+				}
+				</script>
+				
+				<!-- End of Row -->
+
+			</div>
+			<!--End of col-span-9-->
+
+
+			<!-- New column...................... -->
+			<!-- <div class="col-sm-9">
+
+				<a href="#"><strong><i
+						class="glyphicon glyphicon-tasks"></i> Performance</strong></a>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="container">
+							<div class="row">
+								<div id="chart_div" class="col-md-6"></div>
+								<div id="chart_div2" class="col-md-6"></div>
+							</div>
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<!-- /Main -->
+
+
+		<!-- script references -->
+		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script src="dash.js"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/scripts.js"></script>
+		
+		<% for(var i=0;i < vms.length; i++){ %>
+				<script>
+				updatestatus(<%=vms[i].id %>)
+				updateip(<%=vms[i].id %>)
+				</script> 
+				<% }%>
+		
+		<script src="dash.js"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#accordion").accordion({
+					active:false,
+					collapsible : true,
+					heightStyle : "content",
+					activate : function(event, ui) {
+						//alert((ui.newHeader.context.id));
+						var id = ui.newHeader.context.id;
+						$.post("/vm/getstats", {vmid:id}).done(function(data) {
+							visitorData(data.data);
+						});
+						//
+					}
+				});
+			});
+			function onTemplateSelect(tid)
+			{
+				$.post("/vm/create", {templateid:tid}).done(function(data) {
+					console.log(data);
+					alert(data.status);
+					window.location ="/dashboard";
+				});
+				
+			}
+			function onvmTerminate(vmid)
+			{
+				$.post("/vm/terminate", {vmid:vmid}).done(function(data) {
+					console.log(data);
+					alert(data.status);
+					window.location ="/dashboard";
+					//alert(vmid);				
+				});
+			}
+			function onvmStop(vmid)
+			{
+				alert("Stopping Please click ok");
+				$.post("/vm/stop", {vmid:vmid}).done(function(data) {
+					console.log(data);
+					//alert(vmid);
+					window.location ="/dashboard"
+				});
+			}
+			function onvmStart(vmid)
+			{
+				alert(vmid);
+				$.post("/vm/start", {vmid:vmid}).done(function(data) {
+					console.log(data);
+					alert(data.status);
+					window.location ="/dashboard"
+				});
+			}
+		</script>
+		
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script>
+    
+    function visitorData (data) {
+    	  console.log(data[0]);
+    	  console.log(data[1]);
+    	  console.log(data[2]);
+    	  console.log(data[3]);
+
+    	  $('#vmStatsChart').highcharts({
+    	   
+    	    title: {
+    	      text: 'VM Stats'
+    	    },
+    	    subtitle: {
+    	      text: 'CPU & Memory',
+    	      x: -20
+    	    },
+    	    xAxis: {
+    	      categories: data[0]
+    	    },
+    	    yAxis: {
+    	      
+    	    },
+    	    series:  [{
+    	            name: 'CPU (MHz)',
+    	            data: data[1]
+    	        }, {
+    	            name: 'Memory (MB)',
+    	            data: data[2]
+    	        }]
+    	  });
+    	}
+    </script>
+</body>
+</html>
